@@ -1,0 +1,8 @@
+extends layout
+
+block layout-content
+  button.btn.btn-success Test
+  div.container-shadow.main-container
+    ul
+      each sensor, i in data
+        li= sensor.entity_id
