@@ -1,8 +1,19 @@
 extends layout
 
 block layout-content
-  button.btn.btn-success Test
-  div.container-shadow.main-container
-    ul
-      each sensor, i in data
-        li= sensor.entity_id
+  nav
+    #nav-tab.nav.nav-tabs(role='tablist')
+      a#nav-home-tab.nav-item.nav-link(data-toggle='tab' href='#nav-home' role='tab' aria-controls='nav-home' aria-selected='true') Home
+      a#nav-profile-tab.nav-item.nav-link.active(data-toggle='tab' href='#nav-profile' role='tab' aria-controls='nav-mib-object' aria-selected='false') MIB Objects
+      a#nav-contact-tab.nav-item.nav-link(data-toggle='tab' href='#nav-contact' role='tab' aria-controls='nav-monitoring' aria-selected='false') Monitoring
+    #nav-tabContent.tab-content
+      #nav-home.tab-pane.fade(role='tabpanel' aria-labelledby='nav-home-tab')
+        button.btn.btn-success 1 
+      #nav-profile.tab-pane.fade.show.active(role='tabpanel' aria-labelledby='nav-mib-objects-tab') 
+        form(action='/', method="POST")
+          input(name="attr1" value="1" class="form-control")   
+          input(name="attr2" value="Str" class="form-control")
+          button(type="submit") Send    
+      #nav-contact.tab-pane.fade(role='tabpanel' aria-labelledby='nav-monitoring-tab')
+        button.btn.btn-success 3
+
