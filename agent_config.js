@@ -1,4 +1,5 @@
 const fs = require('fs');
+const { formatWithOptions } = require('util');
 
 class SNMPConfiguration {
     #object_type;
@@ -24,7 +25,7 @@ class SNMPConfiguration {
         }else{
             this.#create(configuration);
         }
-        
+    
         this.#saveConfiguration();
     }
 
