@@ -33,12 +33,14 @@ app.get('/', (req, res) => {
   });
 });
 
-app.post('/', (req, res) => {
+app.post('/mib_object', (req, res) => {
   console.log('body' + JSON.stringify(req.body));
   
   let token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIyZjBjMjNlMzFiNDA0NDJiYTg1ZWE5YTZhNzk2OTNjYiIsImlhdCI6MTYzMjU5Mjc2OCwiZXhwIjoxOTQ3OTUyNzY4fQ.Iwln2UBqWAerPczPSLCCp0P5T5s_EcHsqgGFN28ER2Y';
   let data = bent({'Authorization': 'Bearer '+ token}, 'json')('https://ha.nesad.fit.vutbr.cz/api/states');
   
+  res.send(JSON.stringify(req.body))
+
   data.then((data) => {
     res.render('index', {title: 'Dashboard', sensors: data});
   });
