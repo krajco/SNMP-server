@@ -38,11 +38,11 @@
 
 .main-container {
   width: 90%;
-  height: 90%;
+  height: 90vh;
   margin-left: 5%;
   margin-right: 5%;
   margin-top: 2%;
-  overflow: scroll;
+  overflow-x: scroll;
   padding: 2% 2% 2% 2%;
 }
 
@@ -51,12 +51,8 @@
 }
 
 .container-header {
-  width: 90%;
-  height: 10%;
-  margin-left: 5%;
-  margin-right: 5%;
   text-align: center;
-  font-size: 35px;
+  margin-bottom: 40px;
 }
 
 .container-sub {
@@ -85,8 +81,7 @@
   margin-left: 15%;
 }
 
-.container-form button {
-  width: 140px;
-  margin-left: 5%;
-  margin-bottom: 15px;
+.btn-form {
+  margin-left: 15px;
+  width: 150px;
 }

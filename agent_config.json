@@ -1,0 +1,36 @@
+{
+    "tables": [
+        {
+            "object_type": "table",
+            "object_name": "test",
+            "attributes": [
+                {
+                    "attr_name": "editable",
+                    "atrr_type": "boolean"
+                },
+                {
+                    "attr_name": "Identifikator",
+                    "atrr_type": "string"
+                }
+            ],
+            "sensors": []
+        },
+        {
+            "object_type": "table",
+            "object_name": "test1",
+            "attributes": [
+                {
+                    "attr_name": "editable",
+                    "atrr_type": "boolean"
+                },
+                {
+                    "attr_name": "Identifikator",
+                    "atrr_type": "string"
+                }
+            ],
+            "sensors": []
+        }
+    ],
+    "scalar": [],
+    "sensors": []
+}

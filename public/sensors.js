@@ -27,53 +27,56 @@ function jsonConversion(json) {
     return list;
 }
 
+function createHTMLElement(type, classes, attributes) {
+    let element = document.createElement(type);
+    for(let i = 0; i < classes.length; i++) {
+        element.classList.add(classes[i]);
+    }
+
+    for(let i = 0; i < attributes.length; i++) {
+        element.setAttribute(attributes[i][0], attributes[i][1]);
+    }
+
+    return element;
+}
+
+
 let elements = 0;
 function newElementMibObject(attribute, type){
     elements++;
 
-    let form = document.getElementById('mib_object');
+    let form = document.getElementById('form_mib_objects');
 
-    let div_row = document.createElement('div');
-    div_row.classList.add('row');
-    div_row.setAttribute('id', 'mib_row_' + (elements));
+    let div_row = createHTMLElement('div',['form-group', 'row'],[['id','mib_row_' + elements]]);
 
-    let div_col1 = document.createElement('div');
-    div_col1.classList.add('col');
-    let div_col2 = document.createElement('div');
-    div_col2.classList.add('col');
-    let div_col3 = document.createElement('div');
-    div_col3.classList.add('col');
-
-    let input = document.createElement('input');
-    input.setAttribute('placeholder', 'Attribute name')
-    input.classList.add('form-control');
+    let div_col1 = createHTMLElement('div', ['col'], []);
+    let div_col2 = createHTMLElement('div', ['col'], []);
+    let div_col3 = createHTMLElement('div', ['col'], []);
+    
+    let input = createHTMLElement('input', ['form-control'], [['placeholder', 'Attribute name'],['name', 'mib_attr_' + elements]]);
     input.value = attribute;
 
-    let select = document.createElement('select');
-    let opt1 = document.createElement('option');
-    let opt2 = document.createElement('option');
-    let opt3 = document.createElement('option');
-    opt1.setAttribute('value', 'string');
+    let select = createHTMLElement('select', ['form-control'], [['id', 'mib_object_select_' + (elements)], ['name', 'mib_attr_type_' + elements]])
+
+    let opt1 = createHTMLElement('option', [], [['value', 'string']]);
+    let opt2 = createHTMLElement('option', [], [['value', 'number']]);
+    let opt3 = createHTMLElement('option', [], [['value', 'boolean']]);
     opt1.innerHTML = 'String';
-    opt2.setAttribute('value', 'number');
     opt2.innerHTML = 'Number';
-    opt3.setAttribute('value', 'boolean');
     opt3.innerHTML = 'Boolean';
+
     select.appendChild(opt1);
     select.appendChild(opt2);
     select.appendChild(opt3);
-
     select.value = type;
     
-    select.classList.add('form-control');
-    select.setAttribute('id', 'mib_object_select_' + (elements));
 
-    let removeButton = document.createElement('div');
-    removeButton.classList.add('btn')
-    removeButton.classList.add('btn-danger')
-    removeButton.setAttribute('id','mib_object_remove_' + (elements));
+    let removeButton = createHTMLElement('button', ['btn', 'btn-danger'],
+     [
+         ['id','mib_object_remove_' + (elements)],
+         ['onclick', 'removeMibElement(this.id)']
+    ])
     removeButton.innerHTML = 'Remove';
-    removeButton.setAttribute('onclick', 'removeMibElement(this.id)')
 
     div_col1.appendChild(input);
     div_col2.appendChild(select);

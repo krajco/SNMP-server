@@ -13,13 +13,13 @@ block layout-content
         div.main-container.container-shadow 
           div.container-header
             h3.display-4 Create new MIB object
-          form(action='/mib_object', method="POST")
+          form(action='mib_object', method="POST")
             div#form_mib_objects
               div.form-group.row
                 div.col
-                  input(type="text" value="" name="mib_object" placeholder="MIB object name" class="form-control")
+                  input(type="text" value="" name="object_name" placeholder="MIB object name" class="form-control")
                 div.col
-                  select.form-control
+                  select.form-control(name='object_type')
                     option(value="" disabled selected hidden) Select type ..
                     option(value="scalar") Scalar
                     option(value="table") Table
@@ -28,10 +28,10 @@ block layout-content
                     option(value="" disabled selected hidden) Select sensors ..
                     each sensor in sensors
                       option(value=sensor) #{sensor.entity_id}
+            div.form-group.row.form-right
+              div(class="btn btn-info btn-form" onclick="newElementMibObject('', '')") Add Element
             div.form-group.row
-              button(class="btn btn-info" onclick="newElementMibObject('', '')") Add Element
-            div.form-group.row
-              button.btn.btn-success Finish!
+              button.btn.btn-success.btn-form(type="submit") Finish!
       #nav-contact.tab-pane.fade(role='tabpanel' aria-labelledby='nav-monitoring-tab')
         button.btn.btn-success 3
 
