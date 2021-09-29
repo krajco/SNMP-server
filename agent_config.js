@@ -26,12 +26,12 @@ class SNMPConfiguration {
             this.#create(configuration);
         }
     
-        this.#saveConfiguration();
+        // this.#saveConfiguration();
     }
 
     #objectExists(data){
         let list = this.#data[this.#object_type];
-        for(let i = 0; i < list.length; i++){
+        for(let i = 0; list[i]; i++){
             if(list[i]['object_name'] === this.#object_name)
                 return true;
         }
@@ -40,7 +40,7 @@ class SNMPConfiguration {
 
     #update(data){
         let list = this.#data[this.#object_type];
-        for(let i = 0; i < list.length; i++){
+        for(let i = 0; ; i++){
             if(list[i]['object_name'] === this.#object_name){
                 list[i] = data;
                 break;
@@ -74,7 +74,31 @@ class SNMPConfiguration {
         return output;
     }
 
-    #saveConfiguration(){
+    addSensorsToObject(sensor, object_type, object_name){
+        let list = this.#data[object_type];
+        
+        for(let i = 0; list[i]; i++){
+            if(list[i]['object_name'] === object_name){
+                let isExist = false;
+                for(let j = 0; j < list[i]['sensors'].length; j++){
+                    if(sensorsArray[j] === sensor) {
+                        isExist = true;
+                        break;
+                    }
+                }
+                if(!isExist) {
+                    let sensorsArray = list[i]['sensors'].push(sensor);               
+                }
+
+                break;
+            }
+        }
+
+        this.#data[this.#object_type] = list;
+    }
+
+
+    saveConfiguration(){
         fs.writeFileSync(this.#configFile, JSON.stringify(this.#data, null, 4), 'utf-8');
     }
 
